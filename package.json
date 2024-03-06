@@ -1,0 +1,25 @@
+{
+  "name": "04-websockets",
+  "version": "1.0.0",
+  "description": "Este es un proyecto en el cuál se va a realizar el seguimiento del curso de websockets de platzi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exe-Figueroa/Apps-RealTime-SocketIo.git"
+  },
+  "keywords": [
+    "Websockets",
+    "Platzi",
+    "NodeJS",
+    "Express"
+  ],
+  "author": " <facundofigueroa789@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Exe-Figueroa/Apps-RealTime-SocketIo/issues"
+  },
+  "homepage": "https://github.com/Exe-Figueroa/Apps-RealTime-SocketIo#readme"
+}
