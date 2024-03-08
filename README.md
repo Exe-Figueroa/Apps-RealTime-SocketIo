@@ -39,7 +39,7 @@
   Es importante tener en cuenta que hoy en día, el protocolo de WebSockets es soportado por más del 97% de los navegadores web de forma nativa. Lo que significa que tranquilamente podrías trabajar con WebSockets puros.
   Pero eventualmente, necesitarás resolver muchos de los problemas que esta librería ya tiene resueltos y altamente probados.
 
-# g
+# 05-¿Cómo funciona Socket.io?
   Esta librería se divide en dos partes, Engine io y Socket io.
   ## Engine io
   Es el motor de la librería. Se encarga de establecer la conexión entre el cliente y el servidor. Maneja las formas de conectarse (Transports), el mecanismo de actualización y detección de des-conexiones.
@@ -71,3 +71,12 @@
   - Broadcasting
   - Multiplexing
   - Manejo de eventos
+
+# 06-Ciclo de vida de Socket.io
+  - El manager abre una conexión y conecta con el servidor
+  - Engine.io manda el handshake
+  - Luego verificar si se logra establecer una conexión 
+  - Si no se logra se entra en un estado (Disconnected) y se devuelve un error al cliente (Se envía el estado connect_error)
+  - Si se logra la conexión se entra en el estado Connected
+  - Si después de conectarse se produce un error el manager es el encargado de intentar hacer la reconexión además se lanza el evento disconnect y se cierra la conexión con el manager
+  - Se repite el flujo
