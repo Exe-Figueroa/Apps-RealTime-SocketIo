@@ -86,3 +86,36 @@
   - Luego se crea una instancia del server de socket.io con el servidor previamente creado (httpServer)
   - Luego se escucha el evento de connection (Validar si algún cliente se conectó)
   -Desde el lado del cliente se crea una conexión. Primero se importa io y en base a eso se crea una variable con el nombre de la ejecución de io(). Esto genera la conexión que abre el socket clente-servidor
+
+# 08-Obteniendo información de conexiones del servidor
+  ## Eventos del lado del cliente para el objeto socket.io
+  - connect → Disparó sobre una conexión exitosa.
+  - connect_error → Se disparó por un error de conexión.Parámetros:
+    - Object objeto de error
+  - connect_timeout → Se disparó en un tiempo de espera de conexión.
+  - reconnect → Disparó a una reconexión exitosa.Parámetros:
+    - Number número de intento de reconexión
+  - reconnect_attempt → Disparó en un intento de re-conectar.
+  - reconnecting → Disparó en un intento de re-conectar. Parámetros:
+    - Number número de intento de reconexión
+  - reconnect_error → Se disparó tras un error de intento de reconexión. Parámetros:
+    - Object objeto de error
+  - reconnect_failed → Se disparó cuando no se pudo volver a conectar dentro reconnectionAttempts
+  ## Eventos del lado del cliente para el objeto socket
+  - connect → Disparo al conectar.
+  - error → Se dispara a un error de conexión. Parámetros:
+    - Object datos de error
+  - disconnect → Disparó tras una des-conexión.
+  - reconnect → Disparó a una reconexión exitosa.Parámetros:
+    - Number número de intento de reconexión
+  - reconnect_attempt → Disparada a un intento de re-conectarse.
+  - reconnecting → Disparó en un intento de re-conectar. Parámetros:
+    - Number número de intento de reconexión
+  - reconnect_error → Se disparó tras un error de intento de reconexión. Parámetros:
+    - Object objeto de error
+  - reconnect_failed → Se disparó cuando no se pudo volver a conectar dentro de reconnectionAttempts
+  ## Eventos del Servidor
+  - connection / connect → Disparó contra un relación. Parámetros:
+    - Socket el socket entrante.
+
+  En socket.conn se escucha cualquier evento lanzado por el motor
