@@ -211,3 +211,9 @@
   - Once → Se usa para detectar (o escuchar) un evento una sola vez. Sin importar si el evento se emite varias veces.
   - Off → Se usa para dejar de escuchar un evento, sin importar que este se siga emitiendo.
   💡 El listener del evento no debe ser una función anónima, sino una función nombrada.
+
+# 11-Broadcast de eventos
+  ``` javascript
+  socket.broadcast.emit()
+  ```
+  - Emite el evento para todos los usuarios a excepción del usuario que emite el evento

@@ -19,31 +19,11 @@ app.get('/', (req, res) => {
 io.on('connection', socket => {
   socketsOnline.push(socket.id);
   socket.emit('welcome', 'Bienvenido. Te has logrado conectar al servidor');
-  socket.on('sendBtn', (data) => {
-    console.log(data);
+  socket.on('circlePosition', (positions) => {
+    socket.broadcast.emit('moveCircle', positions);
   })
-
-  // Emisión a todos
-  io.emit('everyone', `Connection for everyone sockets. Your socketId is: ${socket.id}`)
-
-  socket.on('greetingLast', data => {
-    const lastSocket = socketsOnline.at(-1);
-    io.to(lastSocket).emit('greeting', `${data} cliente con el id ${socket.id}`)
-  })
-
-  // on, once y off
-  // socket.emit('on', 'genericData');
-  // socket.emit('on', 'genericData');
-
-  // socket.emit('once', 'genericData');
-  // socket.emit('once', 'genericData');
-
-  socket.emit('off', 'hola')
-  setTimeout(() => {
-    socket.emit('off', 'hola')
-  }, 3000)
 })
 
 httpServer.listen(3000, () => {
-  console.log('Escuchando en el puerto 3000 🚀 (La vieja confiable)');
+  console.log('Escuchando en el puerto 3000 🚀');
 })
