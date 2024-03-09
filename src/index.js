@@ -16,17 +16,13 @@ app.get('/', (req, res)=>{
 })
 // Escuchando peticiones con websockets
 io.on('connection', socket => {
-  // console.log('Clients =>',io.engine.clientsCount)
-  // console.log('Socket => ',socket.id);
-  // socket.on('disconnect', ()=>{
-  //   console.log('Disconnect');
-  // })
-
-  // Trabajar con los upgrades de los transports
-
-  socket.conn.once('upgrade', ()=>{
-    console.log(`Pasando de http long-polling fallback a => ${socket.conn.transport.name}`);
+  socket.emit('welcome', 'Hola bebé ya que contigo no sirve la labia... 🎶');
+  socket.on('sendBtn', (data)=>{
+    console.log(data);
   })
+
+  // Emisión a todos
+  io.emit('everyone', `Connection for everyone sockets. Your socketId is: ${socket.id}`)
 })
 
 httpServer.listen(3000, ()=>{

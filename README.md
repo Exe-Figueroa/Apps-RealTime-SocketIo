@@ -119,3 +119,89 @@
     - Socket el socket entrante.
 
   En socket.conn se escucha cualquier evento lanzado por el motor
+
+# 09-Emisión de eventos
+  ## Eventos del servidor
+  ``` javascript
+  socket.emit(/* .. */) 
+  ```
+  - Emisión básica.
+  ``` javascript
+  socket.broadcast.emit(/* .. */)  
+  ```
+  - A todos los clientes del espacio de nombres actual, exceptuando al remitente.
+  ``` javascript
+  socket.to('room1').emit(/* .. */)  
+  ```
+  - A todos los clientes en room1, excepto al remitente.
+  ``` javascript
+  socket.to(['room1', 'room2']).emit(/* .. */)  
+  ```
+  - A todos los clientes en room1 y/o room2, excepto al remitente.
+  ``` javascript
+  socket.compress(false).emit(/* .. */)  
+  ```
+  - Sin compresión.
+  ``` javascript
+  socket.volatile.emit(/* .. */)  
+  ```
+  - ‎Un mensaje que podría eliminarse si el transporte de bajo nivel no se puede escribir‎.
+  ``` javascript
+  socket.emit("question", (answer) => {*...*});  
+  ```
+  - Con reconocimiento.
+  Con timeout cuando el receptor no recibió el evento en el tiempo esperado.
+  ``` javascript
+  socket.timeout(5000).emit("my-event", (err) => {
+    if (err) {
+      // the other side did not acknowledge the event in the given delay
+    }
+  });
+  ``` 
+  ``` javascript
+  io.in('room1').emit(/* .. */) 
+  ```
+  - A todos los clientes en room1.
+  ``` javascript
+  io.to(['room1', 'room2']).except('room3').emit(/* .. */) 
+  ```
+  - A todos los clientes en room1 y/o room2, excepto aquellos en room3.
+  ``` javascript
+  io.of('myNamespace').emit(/* .. */) 
+  ```
+  - A todos los clientes en el espacio de nombres “myNamespace”.
+  ``` javascript
+  io.of('myNamespace').to('room1').emit(/* .. */) 
+  ```
+  - A todos los clientes en room1 en el espacio de nombres “myNamespace”.
+  ``` javascript
+  io.to(socketId).emit(/* .. */) 
+  ```
+  - A un socket en particular por su ID (mensaje privado).
+  ``` javascript
+  io.local.emit(/* .. */) 
+  ```
+  - A todos los clientes en este nodo (cuando se tienen múltiples nodos).
+  ``` javascript
+  io.emit(/* .. */) 
+  ```
+  - A todos los clientes conectados.
+  ## Eventos del cliente
+  ``` javascript
+  socket.emit(/* .. */) 
+  ``` 
+  - Emisión básica.
+  ``` javascript
+  socket.emit("question", (answer) => {*...*}); 
+  ``` 
+  - Con reconocimiento.
+  ``` javascript
+  socket.compress(false).emit(/* .. */) 
+  ``` 
+  - Sin compresión.
+  ``` javascript
+  socket.volatile.emit(/* .. */) 
+  ``` 
+  - ‎Un mensaje que podría eliminarse si el transporte de bajo nivel no se puede escribir‎.
+
+  - Con timeout cuando el receptor no recibió el evento en el tiempo esperado.
