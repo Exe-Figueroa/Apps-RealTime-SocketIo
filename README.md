@@ -81,7 +81,7 @@
   - Si después de conectarse se produce un error el manager es el encargado de intentar hacer la reconexión además se lanza el evento disconnect y se cierra la conexión con el manager
   - Se repite el flujo
 
-# g
+# 07-Creando nuestra primera aplicación con Socket.io
   - Primero se crea un server con express y con create server
   - Luego se crea una instancia del server de socket.io con el servidor previamente creado (httpServer)
   - Luego se escucha el evento de connection (Validar si algún cliente se conectó)
