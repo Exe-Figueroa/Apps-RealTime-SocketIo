@@ -80,3 +80,9 @@
   - Si se logra la conexión se entra en el estado Connected
   - Si después de conectarse se produce un error el manager es el encargado de intentar hacer la reconexión además se lanza el evento disconnect y se cierra la conexión con el manager
   - Se repite el flujo
+
+# g
+  - Primero se crea un server con express y con create server
+  - Luego se crea una instancia del server de socket.io con el servidor previamente creado (httpServer)
+  - Luego se escucha el evento de connection (Validar si algún cliente se conectó)
+  -Desde el lado del cliente se crea una conexión. Primero se importa io y en base a eso se crea una variable con el nombre de la ejecución de io(). Esto genera la conexión que abre el socket clente-servidor
