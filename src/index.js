@@ -17,10 +17,43 @@ app.get('/', (req, res) => {
 })
 // Escuchando peticiones con websockets
 io.on('connection', socket => {
-  socketsOnline.push(socket.id);
-  socket.emit('welcome', 'Bienvenido. Te has logrado conectar al servidor');
-  socket.on('circlePosition', (positions) => {
-    socket.broadcast.emit('moveCircle', positions);
+  socket.connectedRoom = '';
+
+  
+  socket.on('connectToRoom', (room) => {
+    socket.leave(socket.connectedRoom);
+    // Se verifica a qué sala nos vamos a conectar. Inicialmente estamos conectados a la sala global
+    switch (room) {
+      case 'room1':
+        socket.join(room);
+        socket.connectedRoom = room;
+
+        break;
+
+      case 'room2':
+        socket.join(room);
+        socket.connectedRoom = room;
+
+        break;
+
+      case 'room3':
+        socket.join(room);
+        socket.connectedRoom = room;
+
+        break;
+
+      default:
+        break;
+    }
+
+  })
+
+  socket.on('message', (message)=>{
+    const room = socket.connectedRoom;
+    io.to(room).emit('sendMessage', {
+      message,
+      room
+    })
   })
 })
 

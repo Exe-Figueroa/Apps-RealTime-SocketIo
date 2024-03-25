@@ -217,3 +217,20 @@
   socket.broadcast.emit()
   ```
   - Emite el evento para todos los usuarios a excepción del usuario que emite el evento
+
+# 12-Creación de salas con Socket.io
+  - Se puede crear una sala y andar dentro de esa sala un conjunto de sockets.
+  - Luego podríamos mandar ahí nuestros eventos
+  ## Creación de entorno para salas
+  - Se crea un boton para cada sala
+  - Luego se crea un ul que va a representar la sala
+  - Luego se crea un evento por botón y además se crea un botón que enviará un mensaje a una sala determinada
+  ## Concexión de sala 
+  - Primero se crea la clave connectedRoom dentro del objeto socket y se la iguala a un strng vació.
+  - Luego se escucha el evento para conectarse a la sala que emiten los botones de las salas y en base al room que recibe se conecta a una u otra sala
+  - Se une el cliente a la sala con el método socket.join(nombre_sala) y además se cambia el socke.connectedRoom para identificar que estamos conectados a esa sala.
+  - Luego se escucha el evento de message que trae en un payload cargado con el mensaje del cliente.
+  - Se le dice a io hacia qué sala debe dirigir la info del siguiente evento que va a emitir en este caso a socket.connectedRoom
+  - Se le pasa el nombre del evento a emitir y se le pasa un payload con el mensaje
+  `Esto lo que va a hacer es que al cliente estar conectado a una determinada sala este podrá enviar y recibir la información de esa sala.`
+  - Luego en el lado del cliente se escucha dicho evento, se crea un listItem con el mensaje cargado en el payload y se inyecta a la lista desordenada con el id de la sala (Todos los usuarios conectados a determinada sala solo reciben los valores que se envían a esa sala, los que se conecten a otras salas no reciben nada más que lo que se envíe a su sala).
